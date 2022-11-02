@@ -58,7 +58,6 @@ class ProfessionalContacts extends StatelessWidget {
   /// Display the contact dialog or dialog list
   _displayContactMessage(ContactModel contact) {
     game.gameScenesController.bagController.closeBag();
-    game.player.canMove = false;
     Future.delayed(const Duration(milliseconds: 500), () {
       game.gameScenesController.gameDialogController.onDialog(
         DialogModel(

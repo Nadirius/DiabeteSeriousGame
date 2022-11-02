@@ -10,7 +10,6 @@ import 'player.dart';
 class BrocoliSon extends Perso with HasGameRef<DiabeteGameSceneBorocoli> {
   BrocoliSon(String user) : super(fileNamePngCharacter: GameImageAssets.user);
 
-  
   bool _hasCollided = false;
   late double mapWidth;
   late double mapHeight;
@@ -147,7 +146,7 @@ class BrocoliSon extends Perso with HasGameRef<DiabeteGameSceneBorocoli> {
     ),
     DialogModel(
       isShowDialog: true,
-      dialogType: DialogType.questionCheckbox,
+      dialogType: DialogType.questionRadioButton,
       question:
           "Au vu des résultats de l’examen clinique, que faites-vous ?  \n",
       hasNext: true,

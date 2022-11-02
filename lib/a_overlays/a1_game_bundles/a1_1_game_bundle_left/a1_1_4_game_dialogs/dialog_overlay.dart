@@ -419,7 +419,7 @@ class DialogOverlay extends StatelessWidget {
             fontFamily: FontFamily.pixelSansSerif,
           ),
           speed: const Duration(
-            milliseconds: 10,
+            milliseconds: 1,
           ),
         ),
       ],
@@ -491,10 +491,6 @@ class DialogOverlay extends StatelessWidget {
 
   /// Validate if the answer is correct
   bool _isResultTrue(String answer) {
-    debugPrint(answer);
-    debugPrint((dialog.answers!
-        .where((element) => element.containsValue(answer))
-        .first["result"]));
     return ((dialog.answers!
         .where((element) => element.containsValue(answer))
         .first["result"]));
