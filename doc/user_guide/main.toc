@@ -1,6 +1,0 @@
-\babel@toc {french}{}\relax 
-\contentsline {section}{Introduction}{1}{section*.4}%
-\contentsline {section}{Le jeu}{1}{section*.5}%
-\contentsline {subsection}{Le sac à dos}{1}{section*.6}%
-\contentsline {subsubsection}{Planning de la journée}{1}{section*.7}%
-\contentsline {section}{Conclusion}{1}{section*.8}%
