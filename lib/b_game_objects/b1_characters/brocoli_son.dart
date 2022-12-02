@@ -35,7 +35,8 @@ class BrocoliSon extends Perso with HasGameRef<DiabeteGameSceneBorocoli> {
           gameRef.gameScenesController.gameDialogController.onDialog(
             DialogModel(
               isShowDialog: true,
-              dialogMessage: "Aidez mon père svp !",
+              dialogMessage:
+                  "Ouvrez votre sac et rendez-vous dans l’onglet présentant les professionnels de la santé et sélectionnez l’icône correspondant aux urgences pour aider mon père !",
             ),
           );
         }

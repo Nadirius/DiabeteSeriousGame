@@ -200,7 +200,7 @@ class GameScenesController extends BaseController {
               .sendInitialMessage(GameDialogs.initialVillageMesssage);
         });
         scene.soundState = true;
-
+        print("ici");
         break;
     }
   }

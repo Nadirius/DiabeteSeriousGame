@@ -4,7 +4,6 @@ import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
 
@@ -13,6 +12,7 @@ import '../b_game_objects/b1_characters/player.dart';
 import '../c_game_loaders/scene_objects_loader.dart';
 import '../e_game_controllers/e_1_scenes_controller/game_scenes_controller.dart';
 import '../z_globals/z1_game_manager.dart';
+
 import '../z_globals/z4_assets_manager.dart';
 import 'game_base.dart';
 
@@ -69,8 +69,10 @@ class DiabeteGameScene extends DiabeteGameBase
 
   /// Init the map (scene, width, height)
   Future<TiledComponent<FlameGame>> initMap() async {
+    print("initMap");
     final sceneMap =
         await TiledComponent.load(sceneTmx, Vector2.all(GameParams.spriteSize));
+    print("scenMap Loaded");
     addToScene(sceneMap);
 
     mapWidth = sceneMap.tileMap.map.width * GameParams.spriteSize;

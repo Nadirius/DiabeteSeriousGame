@@ -407,7 +407,7 @@
   <object id="56" class="Obstacle" x="864" y="380" width="16" height="32"/>
  </objectgroup>
  <objectgroup id="9" name="SpawnPoints">
-  <object id="28" name="Player" class="SpawnPoint" x="632" y="507.5" width="16" height="16"/>
+  <object id="28" name="Player" class="SpawnPoint" x="624" y="496" width="16" height="16"/>
   <object id="58" name="Brocoli" class="SpawnPoint" x="800" y="464" width="16" height="16"/>
   <object id="59" name="BrocoliSon" class="SpawnPoint" x="689" y="417" width="16" height="16"/>
  </objectgroup>

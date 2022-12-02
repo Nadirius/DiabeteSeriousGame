@@ -1,4 +1,6 @@
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+
 import 'package:seriousgame/d_game_scenes/game_scene_generator.dart';
 
 import '../../a_overlays/a1_game_bundles/a1_1_game_bundle_left/a1_1_1_sound/sound_button_controller.dart';
@@ -48,6 +50,7 @@ class DiabeteGameSceneBorocoli extends DiabeteGameScene {
     initBrocoliSon();
     await super.onLoad();
     continueInitialisation();
+    await initBullets();
   }
 
   /// Init the Brocoli in the scene
@@ -81,19 +84,47 @@ class DiabeteGameSceneBorocoli extends DiabeteGameScene {
   void update(double dt) {
     super.update(dt);
     if (etape1IsDone) {
+      print("etape1");
       etape1 = false;
       etape2 = true;
       etape1IsDone = false;
+      remove(objectionBullet!);
+      add(hiBullet!);
     }
     if (etape2IsDone) {
+      print("etape2");
       etape2 = false;
       etape3 = true;
       etape2IsDone = false;
+      remove(hiBullet!);
     }
     if (etape3IsDone) {
+      print("etape3");
       etape3 = false;
       etape4 = true;
       etape3IsDone = false;
     }
+  }
+
+  Future<void> initBullets() async {
+    final imageObjectionBullet =
+        await Flame.images.load("objection_bullet.png");
+    objectionBullet = SpriteComponent(
+        sprite: Sprite(
+          imageObjectionBullet,
+        ),
+        size: Vector2.all(32),
+        anchor: Anchor.bottomCenter,
+        position: Vector2(brocoli.x, brocoli.y - brocoli.height));
+
+    final imageHiBullet = await Flame.images.load("hi_bullet.png");
+    hiBullet = SpriteComponent(
+        sprite: Sprite(
+          imageHiBullet,
+        ),
+        size: Vector2.all(32),
+        anchor: Anchor.bottomCenter,
+        position: Vector2(brocoliSon.x, brocoliSon.y - brocoliSon.height));
+    add(objectionBullet!);
   }
 }

@@ -4,7 +4,7 @@ import '../a_overlays/a2_bag_overlay/a2_4_professional_contacts/a2_4_1_contacts_
 const String defaultDialog =
     "Vous n'êtes pas entrain de joindre le contact adapté à la situation.";
 
-final List<DialogModel> urgence = [
+final List<DialogModel> urgence = <DialogModel>[
   DialogModel(
     hasInteraction: true,
     interaction: ["contacts", "Urgences médicales", false],
@@ -35,7 +35,7 @@ final List<DialogModel> urgence = [
     dialogMessage: "Bravo !\n "
         "Vous avez sélectionné le bon outil.\n",
     hasNext: true,
-    index: 3,
+    index: 1,
   ),
   DialogModel(
     isShowDialog: true,
@@ -43,7 +43,7 @@ final List<DialogModel> urgence = [
         "Maintenant vous allez devoir choisir quel est le bon SBAR parmi 3 propositions. \n"
         "Soyez concentré car chaque proposition ne sera affichée qu’une seule fois. \n ",
     hasNext: true,
-    index: 4,
+    index: 2,
   ),
   DialogModel(
     isShowDialog: true,
@@ -53,7 +53,7 @@ final List<DialogModel> urgence = [
         "Je sais qu’il est connu pour un diabète de type II. Son fils me dit que son état se péjore depuis quelques jours. \n"
         "Je suis très inquiète ! Venez vite !  \n ",
     hasNext: true,
-    index: 5,
+    index: 3,
   ),
   DialogModel(
     isShowDialog: true,
@@ -65,7 +65,7 @@ final List<DialogModel> urgence = [
         "Le patient est dans un état hyperglycémique avancé. Je crains que son état se péjore et qu’il fasse un coma hyperosmolaire.  \n"
         "Pouvez-vous envoyer une ambulance à l’adresse suivante : Chemin du Brocoli 3 ?\n",
     hasNext: true,
-    index: 6,
+    index: 4,
   ),
   DialogModel(
     isShowDialog: true,
@@ -76,7 +76,7 @@ final List<DialogModel> urgence = [
         "Le patient est dans un état hyperglycémique avancé. \n"
         "Je crains que son état se péjore et qu’il fasse un coma hyperosmolaire. Pouvez-vous envoyer une ambulance ? \n",
     hasNext: true,
-    index: 7,
+    index: 5,
   ),
   DialogModel(
     isShowDialog: true,
@@ -97,7 +97,7 @@ final List<DialogModel> urgence = [
       }
     ],
     hasNext: true,
-    index: 8,
+    index: 6,
   ),
   DialogModel(
     isShowDialog: true,
@@ -105,7 +105,7 @@ final List<DialogModel> urgence = [
         "Vous effectuez des transmissions structurées selon le SBAR en évoquant"
         " la situation actuelle (S), les antécédents (B), l’évaluation clinique ou « assessment » (A) et en recommandant une intervention (R). \n",
     hasNext: true,
-    index: 9,
+    index: 7,
   ),
   DialogModel(
     isShowDialog: true,
@@ -116,7 +116,7 @@ final List<DialogModel> urgence = [
         " identification des signes et symptômes d’une hyperglycémie, réalisation d’un examen physique"
         " et transmission de données à un professionnel de la santé en utilisant le SBAR.\n\n",
     hasNext: false,
-    index: 10,
+    index: 9,
   ),
 ];
 

@@ -6,8 +6,6 @@ import '../../../z_globals/z10_contact_manager.dart';
 import 'a2_4_1_contacts_ui_material/contact_model.dart';
 
 /// Contacts controller
-import '../../../z_globals/z10_contact_manager.dart';
-import 'a2_4_1_contacts_ui_material/contact_model.dart';
 
 class ContactsController extends BaseController {
   late StreamController<List<dynamic>> _streamContactController;

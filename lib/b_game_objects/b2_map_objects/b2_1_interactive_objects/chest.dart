@@ -27,7 +27,6 @@ class Chest extends SpriteComponent
     this.chestType = ChestType.scene,
     this.listDialog,
     this.hasListDialog = false,
-    
   }) : super(
           sprite: sprite,
           size: size,
@@ -50,16 +49,13 @@ class Chest extends SpriteComponent
       Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
     if (other is PlayerComponent) {
-
-        gameRef.gameScenesController.gameDialogController.inputDialog.add(
-          DialogModel(
-            isShowDialog: true,
-            dialogMessage:
-                "Get it",
-          ),
-        );
-        gameRef.remove(this);
-      }
+      gameRef.gameScenesController.gameDialogController.inputDialog.add(
+        DialogModel(
+          isShowDialog: true,
+          dialogMessage: "Get it",
+        ),
+      );
+      gameRef.remove(this);
     }
   }
 }

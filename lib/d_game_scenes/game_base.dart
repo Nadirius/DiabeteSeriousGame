@@ -1,4 +1,6 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+
 import 'package:seriousgame/a_overlays/a1_game_bundles/a1_1_game_bundle_left/a1_1_1_sound/sound_button_controller.dart';
 
 import '../b_game_objects/b1_characters/brocoli.dart';
@@ -40,6 +42,10 @@ abstract class DiabeteGameBase extends FlameGame with SingleGameInstance {
   //CMS Brocoli
   late final Brocoli brocoli;
   late final BrocoliSon brocoliSon;
+
+  SpriteComponent? hiBullet;
+  SpriteComponent? objectionBullet;
+  SpriteComponent? exclamationBullet;
 
   // Game controller
   GameScenesController gameScenesController;

@@ -2,7 +2,6 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
-import 'package:seriousgame/b_game_objects/b1_characters/brocoli_son.dart';
 
 import '../../z_globals/z1_game_manager.dart';
 
@@ -31,9 +30,12 @@ class Perso extends SpriteAnimationComponent with CollisionCallbacks {
     final spriteSheet = await initSprite();
     loadAnimations(spriteSheet);
     animation = idleDownAnimation;
-    print(this is BrocoliSon);
-    add(RectangleHitbox.relative(Vector2(0.6, 0.9),
-        parentSize: Vector2(width, height)));
+    add(
+      RectangleHitbox.relative(
+        Vector2(0.6, 0.9),
+        parentSize: Vector2(width, height),
+      ),
+    );
   }
 
   // END UPDATE SECTION
