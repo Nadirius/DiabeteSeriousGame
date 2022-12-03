@@ -1,4 +1,6 @@
 import 'package:flame/components.dart';
+import 'package:flame_forge2d/contact_callbacks.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 
 import '../../a_overlays/a1_game_bundles/a1_1_game_bundle_left/a1_1_4_game_dialogs/dialog_model.dart';
 import '../../d_game_scenes/d_1_village_cms/game_scene_brocoli.dart';
@@ -6,17 +8,19 @@ import '../../z_globals/z4_assets_manager.dart';
 import 'perso_base.dart';
 import 'player.dart';
 
-/// This class manager Brocoli Son. Brocoli Son inherits from perso (perso_base.dart)
-class BrocoliSon extends Perso with HasGameRef<DiabeteGameSceneBorocoli> {
-  BrocoliSon(String user) : super(fileNamePngCharacter: GameImageAssets.user);
-
+class PersoBaseBodyBrocoliSon extends PersoBaseBody<DiabeteGameSceneBorocoli>
+    with ContactCallbacks {
+  Perso player;
   bool _hasCollided = false;
-  late double mapWidth;
-  late double mapHeight;
+
+  PersoBaseBodyBrocoliSon({
+    required this.player,
+  }) : super(
+          charachter: player,
+        );
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollision(intersectionPoints, other);
+  void beginContact(Object other, Contact contact) {
     if (other is PlayerComponent) {
       if (!_hasCollided) {
         if (gameRef.etape1) {
@@ -45,15 +49,14 @@ class BrocoliSon extends Perso with HasGameRef<DiabeteGameSceneBorocoli> {
     }
   }
 
-  /// Reset values when player ends the collision
   @override
-  void onCollisionEnd(PositionComponent other) {
+  void endContact(Object other, Contact contact) {
     if (other is PlayerComponent) {
       _hasCollided = false;
     }
-    super.onCollisionEnd(other);
   }
 
+  //#######################333
   final dialogsMission3Part2 = <DialogModel>[
     DialogModel(
       isShowDialog: true,
@@ -192,4 +195,11 @@ class BrocoliSon extends Perso with HasGameRef<DiabeteGameSceneBorocoli> {
       index: 9,
     ),
   ];
+}
+
+/// This class manager Brocoli Son. Brocoli Son inherits from perso (perso_base.dart)
+class BrocoliSon extends Perso {
+  BrocoliSon(String user) : super(fileNamePngCharacter: GameImageAssets.user);
+  late double mapWidth;
+  late double mapHeight;
 }

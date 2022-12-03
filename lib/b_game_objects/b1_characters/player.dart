@@ -1,9 +1,32 @@
 import 'package:flame/components.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
-
+import '../../d_game_scenes/game_base.dart';
 import '../../d_game_scenes/game_scene_generator.dart';
 import '../../z_globals/z1_game_manager.dart';
 import 'perso_base.dart';
+
+class PersoBaseBodyPlayer extends PersoBaseBody {
+  PlayerComponent player;
+
+  PersoBaseBodyPlayer({
+    required this.player,
+  }) : super(
+          charachter: player,
+          bodyType: BodyType.dynamic,
+        );
+
+  @override
+  void update(double dt) async {
+    super.update(dt);
+    if (player.canMove) {
+      body.position.x = player.position.x;
+      body.position.y = player.position.y;
+    }
+  }
+
+  /// This methode change the attribut "animation" when player is moving depending playing behavior (z1_game_manager.dart
+}
 
 /// This class manager the player (main character). Player componant inherits from perso (perso_base.dart)
 class PlayerComponent extends Perso with HasGameRef<DiabeteGameScene> {
@@ -19,12 +42,12 @@ class PlayerComponent extends Perso with HasGameRef<DiabeteGameScene> {
   /// This methode update the apparance of the player depending the animation (4 position when move, 4 position when idle)
   @override
   void update(double dt) async {
+    super.update(dt);
     if (canMove) {
       moveAnimation(dt: dt);
     } else {
       idleAnimation();
     }
-    super.update(dt);
   }
 
   /// This methode change the attribut "animation" when player is moving depending playing behavior (z1_game_manager.dart)

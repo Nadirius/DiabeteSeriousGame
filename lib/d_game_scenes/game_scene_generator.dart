@@ -69,10 +69,9 @@ class DiabeteGameScene extends DiabeteGameBase
 
   /// Init the map (scene, width, height)
   Future<TiledComponent<FlameGame>> initMap() async {
-    print("initMap");
     final sceneMap =
         await TiledComponent.load(sceneTmx, Vector2.all(GameParams.spriteSize));
-    print("scenMap Loaded");
+
     addToScene(sceneMap);
 
     mapWidth = sceneMap.tileMap.map.width * GameParams.spriteSize;
@@ -85,8 +84,8 @@ class DiabeteGameScene extends DiabeteGameBase
   void initPlayer() {
     player = PlayerComponent(GameImageAssets.user)
       ..size = Vector2.all(GameParams.middleSize)
-      ..anchor = Anchor.bottomCenter
-      ..debugMode = false // Only true on debug mode (dev work)
+      ..anchor = Anchor.center
+      ..debugMode = PlayerBehavior.debugmode
       ..mapWidth = mapWidth
       ..mapHeight = mapHeight;
   }

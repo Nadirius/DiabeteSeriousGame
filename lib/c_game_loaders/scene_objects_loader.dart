@@ -1,9 +1,12 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 // ignore: depend_on_referenced_packages
 import 'package:tiled/tiled.dart';
 
+import '../b_game_objects/b1_characters/brocoli_son.dart';
+import '../b_game_objects/b1_characters/player.dart';
 import '../b_game_objects/b2_map_objects/b2_1_interactive_objects/change_scene.dart';
 import '../b_game_objects/b2_map_objects/b2_1_interactive_objects/fountain.dart';
 import '../b_game_objects/b2_map_objects/b2_1_interactive_objects/fridge.dart';
@@ -161,6 +164,8 @@ class GameSceneLoader {
         case TiledObjectName.player:
           game.player.position = Vector2(spawnPoint.x, spawnPoint.y);
           game.addToScene(game.player);
+          game.bodyPlayer = PersoBaseBodyPlayer(player: game.player);
+          game.add(game.bodyPlayer);
           break;
         case TiledObjectName.moutarde:
           break;
@@ -169,6 +174,8 @@ class GameSceneLoader {
         case TiledObjectName.brocoli:
           game.brocoli.position = Vector2(spawnPoint.x, spawnPoint.y);
           game.addToScene(game.brocoli);
+          game.bodyBrocoliSon = PersoBaseBodyBrocoliSon(player: game.brocoli);
+          game.add(game.bodyBrocoliSon);
           break;
         case TiledObjectName.brocoliSon:
           game.brocoliSon.position = Vector2(spawnPoint.x, spawnPoint.y);
@@ -245,7 +252,7 @@ class GameSceneLoader {
       ..position = Vector2(object.x, object.y)
       ..width = object.width
       ..height = object.height
-      ..debugMode = false;
+      ..debugMode = PlayerBehavior.debugmode;
   }
 
   /// List of Tiled mapping

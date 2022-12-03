@@ -18,7 +18,6 @@ class ContactTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("ListTile ${contact.name}, ${contact.isReachable}}");
     return ListTile(
       leading: CircleAvatar(
         backgroundImage: AssetImage("images/${contact.image}"),

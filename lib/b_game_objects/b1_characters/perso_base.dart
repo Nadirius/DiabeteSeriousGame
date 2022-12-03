@@ -3,7 +3,34 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
+import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:seriousgame/d_game_scenes/game_base.dart';
+
 import '../../z_globals/z1_game_manager.dart';
+
+class PersoBaseBody<T extends DiabeteGameBase> extends BodyComponent<T> {
+  Perso charachter;
+  BodyType bodyType;
+  PersoBaseBody({
+    required this.charachter,
+    this.bodyType = BodyType.static,
+  });
+
+  @override
+  Body createBody() {
+    debugMode = PlayerBehavior.debugmode; //prevent debug drawing
+
+    final shape = PolygonShape();
+    shape.setAsBoxXY(charachter.width / 4, charachter.height / 4);
+    final fixtureDef = FixtureDef(shape);
+
+    final bodyDef = BodyDef()
+      ..position = Vector2(charachter.position.x, charachter.position.y)
+      ..type = bodyType
+      ..userData = this;
+    return world.createBody(bodyDef)..createFixture(fixtureDef);
+  }
+}
 
 /// This class is a template for all characters  (heritage)
 class Perso extends SpriteAnimationComponent with CollisionCallbacks {
@@ -30,12 +57,6 @@ class Perso extends SpriteAnimationComponent with CollisionCallbacks {
     final spriteSheet = await initSprite();
     loadAnimations(spriteSheet);
     animation = idleDownAnimation;
-    add(
-      RectangleHitbox.relative(
-        Vector2(0.6, 0.9),
-        parentSize: Vector2(width, height),
-      ),
-    );
   }
 
   // END UPDATE SECTION

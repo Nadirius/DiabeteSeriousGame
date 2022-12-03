@@ -5,6 +5,7 @@ class PlayerBehavior {
   static double strideLength = 120; // longueur des pas du player (en pixel)
   static const int noCollision = -1;
   static const int initialScore = 50;
+  static const bool debugmode = true;
 
   // Movement params
   static const int isIdleDown = 0;

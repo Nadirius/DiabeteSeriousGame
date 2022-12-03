@@ -57,23 +57,23 @@ class DiabeteGameSceneBorocoli extends DiabeteGameScene {
   void initBrocoli() {
     brocoli = Brocoli(GameImageAssets.user)
       ..size = Vector2.all(GameParams.middleSize)
-      ..anchor = Anchor.bottomCenter;
+      ..anchor = Anchor.center;
   }
 
   /// Init the BrocoliSon in the scene
   void initBrocoliSon() {
     brocoliSon = BrocoliSon(GameImageAssets.user)
       ..size = Vector2.all(GameParams.middleSize)
-      ..anchor = Anchor.bottomCenter;
+      ..anchor = Anchor.center;
   }
 
   void continueInitialisation() {
     brocoli
-      ..debugMode = false
+      ..debugMode = PlayerBehavior.debugmode
       ..mapWidth = mapWidth
       ..mapHeight = mapHeight;
     brocoliSon
-      ..debugMode = false
+      ..debugMode = PlayerBehavior.debugmode
       ..mapWidth = mapWidth
       ..mapHeight = mapHeight;
   }
@@ -84,7 +84,6 @@ class DiabeteGameSceneBorocoli extends DiabeteGameScene {
   void update(double dt) {
     super.update(dt);
     if (etape1IsDone) {
-      print("etape1");
       etape1 = false;
       etape2 = true;
       etape1IsDone = false;
@@ -92,14 +91,12 @@ class DiabeteGameSceneBorocoli extends DiabeteGameScene {
       add(hiBullet!);
     }
     if (etape2IsDone) {
-      print("etape2");
       etape2 = false;
       etape3 = true;
       etape2IsDone = false;
       remove(hiBullet!);
     }
     if (etape3IsDone) {
-      print("etape3");
       etape3 = false;
       etape4 = true;
       etape3IsDone = false;
