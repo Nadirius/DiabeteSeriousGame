@@ -8,12 +8,13 @@ import 'package:seriousgame/d_game_scenes/game_base.dart';
 
 import '../../z_globals/z1_game_manager.dart';
 
-class PersoBaseBody<T extends DiabeteGameBase> extends BodyComponent<T> {
+abstract class PersoBaseBody<T extends DiabeteGameBase> extends BodyComponent<T>
+    with ContactCallbacks {
   Perso charachter;
   BodyType bodyType;
   PersoBaseBody({
     required this.charachter,
-    this.bodyType = BodyType.static,
+    this.bodyType = BodyType.kinematic,
   });
 
   @override
@@ -22,7 +23,11 @@ class PersoBaseBody<T extends DiabeteGameBase> extends BodyComponent<T> {
 
     final shape = PolygonShape();
     shape.setAsBoxXY(charachter.width / 4, charachter.height / 4);
-    final fixtureDef = FixtureDef(shape);
+    final fixtureDef = FixtureDef(
+      shape,
+      restitution: 0.9,
+      density: 0.5,
+    );
 
     final bodyDef = BodyDef()
       ..position = Vector2(charachter.position.x, charachter.position.y)
@@ -30,10 +35,20 @@ class PersoBaseBody<T extends DiabeteGameBase> extends BodyComponent<T> {
       ..userData = this;
     return world.createBody(bodyDef)..createFixture(fixtureDef);
   }
+
+  @override
+  void beginContact(Object other, Contact contact) {
+    super.beginContact(other, contact);
+  }
+
+  @override
+  void endContact(Object other, Contact contact) {
+    super.endContact(other, contact);
+  }
 }
 
 /// This class is a template for all characters  (heritage)
-class Perso extends SpriteAnimationComponent with CollisionCallbacks {
+class Perso extends SpriteAnimationComponent {
   Perso({required this.fileNamePngCharacter});
 
   String fileNamePngCharacter;
