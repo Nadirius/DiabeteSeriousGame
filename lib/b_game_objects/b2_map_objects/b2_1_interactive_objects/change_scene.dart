@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 // ignore: depend_on_referenced_packages
 import 'package:tiled/tiled.dart';
 
@@ -9,27 +10,23 @@ import '../../b1_characters/player.dart';
 import '../map_object.dart';
 
 /// Object concerning the changing scene point defined on Tiled
-class ChangeScenePoint extends MapObject {
+class ChangeScenePoint extends MapObjectBody {
   bool _hasCollided = false;
   String toScene;
-  GameScenesController gameScenesController;
 
   ChangeScenePoint({
     required this.toScene,
-    required bool isHavaingCollisionShapePolygone,
-    required this.gameScenesController,
-    List<Point>? polygonePoints,
+    required MapObject mapObject,
   }) : super(
-          polygonePoints: polygonePoints,
-          isHavaingCollisionShapePolygone: isHavaingCollisionShapePolygone,
+          mapObject: mapObject,
         );
 
   /// Loading the next scene when the playing starts the collision
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
-    if (other is PlayerComponent) {
+  void beginContact(Object other, Contact contact) {
+    super.beginContact(other, contact);
+    if (other is PersoBaseBodyPlayer) {
+      print("Collision");
       if (!_hasCollided) {
         if (gameRef.canChangeScene) {
           loadNextScene();
@@ -47,9 +44,9 @@ class ChangeScenePoint extends MapObject {
 
   /// Reset values when player ends the collision
   @override
-  void onCollisionEnd(PositionComponent other) {
-    super.onCollisionEnd(other);
-    if (other is PlayerComponent) {
+  void endContact(Object other, Contact contact) {
+    super.endContact(other, contact);
+    if (other is PersoBaseBodyPlayer) {
       _hasCollided = false;
     }
   }
@@ -57,6 +54,6 @@ class ChangeScenePoint extends MapObject {
   /// Stop the old scene and load the new one
   void loadNextScene() {
     gameRef.stopScene();
-    gameScenesController.goToScene(toScene);
+    gameRef.gameScenesController.goToScene(toScene);
   }
 }

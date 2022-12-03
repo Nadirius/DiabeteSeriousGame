@@ -1,28 +1,26 @@
 // ignore: depend_on_referenced_packages
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:tiled/tiled.dart';
-import 'package:flame/components.dart';
 
 import '../../b1_characters/player.dart';
 import '../map_object.dart';
 
 /// House object
-class House extends MapObject {
+class House extends MapObjectBody {
   final String collisionMessage;
   bool _hasCollided = false;
   House({
     required this.collisionMessage,
-    required bool isHavaingCollisionShapePolygone,
     List<Point>? polygonePoints,
+    required MapObject mapObject,
   }) : super(
-          polygonePoints: polygonePoints,
-          isHavaingCollisionShapePolygone: isHavaingCollisionShapePolygone,
+          mapObject: mapObject,
         );
 
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
-    if (other is PlayerComponent) {
+  void beginContact(Object other, Contact contact) {
+    super.beginContact(other, contact);
+    if (other is PersoBaseBodyPlayer) {
       if (!_hasCollided) {
         // gameRef.player.dialogController.inputDialog.add(
         //     DialogModel(isShowDialog: true, dialogMessage: collisionMessage));
@@ -33,10 +31,10 @@ class House extends MapObject {
 
   /// Reset values when player ends the collision
   @override
-  void onCollisionEnd(PositionComponent other) {
-    if (other is PlayerComponent) {
+  void endContact(Object other, Contact contact) {
+    super.endContact(other, contact);
+    if (other is PersoBaseBodyPlayer) {
       _hasCollided = false;
     }
-    super.onCollisionEnd(other);
   }
 }

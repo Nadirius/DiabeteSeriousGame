@@ -1,5 +1,3 @@
-import 'package:flame/components.dart';
-import 'package:flame_forge2d/contact_callbacks.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 import '../../a_overlays/a1_game_bundles/a1_1_game_bundle_left/a1_1_4_game_dialogs/dialog_model.dart';
@@ -21,7 +19,7 @@ class PersoBaseBodyBrocoliSon extends PersoBaseBody<DiabeteGameSceneBorocoli>
 
   @override
   void beginContact(Object other, Contact contact) {
-    if (other is PlayerComponent) {
+    if (other is PersoBaseBodyPlayer) {
       if (!_hasCollided) {
         if (gameRef.etape1) {
           gameRef.gameScenesController.gameDialogController.onDialog(
@@ -51,7 +49,7 @@ class PersoBaseBodyBrocoliSon extends PersoBaseBody<DiabeteGameSceneBorocoli>
 
   @override
   void endContact(Object other, Contact contact) {
-    if (other is PlayerComponent) {
+    if (other is PersoBaseBodyPlayer) {
       _hasCollided = false;
     }
   }

@@ -18,7 +18,7 @@ import 'game_base.dart';
 
 /// Loader of the different scenes in the game
 class DiabeteGameScene extends DiabeteGameBase
-    with KeyboardEvents, HasCollisionDetection, HasTappableComponents {
+    with KeyboardEvents, HasTappables {
   // Characters spawn points
   late Map<String, Vector2> charactersSpawnPoints;
 

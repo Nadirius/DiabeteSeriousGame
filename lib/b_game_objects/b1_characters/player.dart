@@ -6,7 +6,7 @@ import '../../d_game_scenes/game_scene_generator.dart';
 import '../../z_globals/z1_game_manager.dart';
 import 'perso_base.dart';
 
-class PersoBaseBodyPlayer extends PersoBaseBody {
+class PersoBaseBodyPlayer extends PersoBaseBody<DiabeteGameBase> {
   PlayerComponent player;
 
   PersoBaseBodyPlayer({

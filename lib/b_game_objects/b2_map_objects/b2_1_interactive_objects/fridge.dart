@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 // ignore: depend_on_referenced_packages
 import 'package:tiled/tiled.dart';
 
@@ -7,21 +8,19 @@ import '../../b1_characters/player.dart';
 import '../map_object.dart';
 
 /// Fridge object
-class Fridge extends MapObject {
+class Fridge extends MapObjectBody {
   bool _hasCollided = false;
 
   Fridge({
-    required bool isHavaingCollisionShapePolygone,
     List<Point>? polygonePoints,
+    required MapObject mapObject,
   }) : super(
-          polygonePoints: polygonePoints,
-          isHavaingCollisionShapePolygone: isHavaingCollisionShapePolygone,
+          mapObject: mapObject,
         );
 
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
+  void beginContact(Object other, Contact contact) {
+    super.beginContact(other, contact);
     if (other is PlayerComponent) {
       if (!_hasCollided) {
         gameRef.gameScenesController.gameDialogController.inputDialog.add(
@@ -37,12 +36,12 @@ class Fridge extends MapObject {
 
   /// Reset values when player ends the collision
   @override
-  void onCollisionEnd(PositionComponent other) {
+  void endContact(Object other, Contact contact) {
+    super.endContact(other, contact);
     if (other is PlayerComponent) {
       _hasCollided = false;
       gameRef.isDone = true;
       gameRef.canChangeScene = true;
     }
-    super.onCollisionEnd(other);
   }
 }

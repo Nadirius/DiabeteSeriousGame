@@ -1,4 +1,5 @@
 // ignore: depend_on_referenced_packages
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:tiled/tiled.dart';
 import 'package:flame/components.dart';
 
@@ -7,15 +8,13 @@ import '../../b1_characters/player.dart';
 import '../map_object.dart';
 
 /// TV object
-class TV extends MapObject {
+class TV extends MapObjectBody {
   bool _hasCollided = false;
   bool _streamDialofFlag = true;
   TV({
-    required bool isHavaingCollisionShapePolygone,
-    List<Point>? polygonePoints,
+    required MapObject mapObject,
   }) : super(
-          polygonePoints: polygonePoints,
-          isHavaingCollisionShapePolygone: isHavaingCollisionShapePolygone,
+          mapObject: mapObject,
         );
 
   final dialogs = <DialogModel>[
@@ -85,9 +84,8 @@ class TV extends MapObject {
   ];
 
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
+  void beginContact(Object other, Contact contact) {
+    super.beginContact(other, contact);
     if (other is PlayerComponent) {
       if (!_hasCollided) {
         if (_streamDialofFlag) {
@@ -102,11 +100,11 @@ class TV extends MapObject {
 
   /// Reset values when player ends the collision
   @override
-  void onCollisionEnd(PositionComponent other) {
+  void endContact(Object other, Contact contact) {
+    super.endContact(other, contact);
     if (other is PlayerComponent) {
       _hasCollided = false;
       _streamDialofFlag = true;
     }
-    super.onCollisionEnd(other);
   }
 }

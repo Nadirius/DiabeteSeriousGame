@@ -5,6 +5,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 // ignore: depend_on_referenced_packages
 import 'package:tiled/tiled.dart';
 
+import '../b_game_objects/b1_characters/brocoli.dart';
 import '../b_game_objects/b1_characters/brocoli_son.dart';
 import '../b_game_objects/b1_characters/player.dart';
 import '../b_game_objects/b2_map_objects/b2_1_interactive_objects/change_scene.dart';
@@ -76,37 +77,44 @@ class GameSceneLoader {
       TiledObject interactive, DiabeteGameScene game) {
     switch (interactive.name) {
       case TiledObjectName.tv:
-        game.addToScene(
-          initObject(
-            TV(
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: interactive.polygon),
-            interactive,
+        MapObject obj = initObject(
+          MapObject(
+            isHavaingCollisionShapePolygone: false,
           ),
+          interactive,
         );
+        MapObjectBody objBody = TV(
+          mapObject: obj,
+        );
+        game.addToScene(obj);
+        game.add(objBody);
 
         break;
       case TiledObjectName.fountain:
-        game.addToScene(
-          initObject(
-            Fountain(
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: interactive.polygon),
-            interactive,
+        MapObject obj = initObject(
+          MapObject(
+            isHavaingCollisionShapePolygone: false,
           ),
+          interactive,
         );
-
+        MapObjectBody objBody = Fountain(
+          mapObject: obj,
+        );
+        game.addToScene(obj);
+        game.add(objBody);
         break;
       case TiledObjectName.fridge:
-        game.addToScene(
-          initObject(
-            Fridge(
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: interactive.polygon),
-            interactive,
+        MapObject obj = initObject(
+          MapObject(
+            isHavaingCollisionShapePolygone: false,
           ),
+          interactive,
         );
-
+        MapObjectBody objBody = Fridge(
+          mapObject: obj,
+        );
+        game.addToScene(obj);
+        game.add(objBody);
         break;
       default:
     }
@@ -116,37 +124,48 @@ class GameSceneLoader {
   static void loadHouse(TiledObject house, DiabeteGameScene game) {
     switch (house.name) {
       case TiledObjectName.brocoliHouse:
-        game.addToScene(
-          initObject(
-            House(
-                collisionMessage: MapCollisionInteractWith.brocoliHouse,
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: house.polygon),
-            house,
+        MapObject obj = initObject(
+          MapObject(
+            isHavaingCollisionShapePolygone: false,
           ),
+          house,
         );
+        MapObjectBody objBody = House(
+          mapObject: obj,
+          collisionMessage: MapCollisionInteractWith.brocoliHouse,
+        );
+        game.addToScene(obj);
+        game.add(objBody);
         break;
       case TiledObjectName.moutardeHouse:
-        game.addToScene(
-          initObject(
-            House(
-                collisionMessage: MapCollisionInteractWith.moutardeHouse,
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: house.polygon),
-            house,
+        MapObject obj = initObject(
+          MapObject(
+            isHavaingCollisionShapePolygone: false,
           ),
+          house,
         );
+        MapObjectBody objBody = House(
+          mapObject: obj,
+          collisionMessage: MapCollisionInteractWith.moutardeHouse,
+        );
+        game.addToScene(obj);
+        game.add(objBody);
+
         break;
       case TiledObjectName.myrtilleHouse:
-        game.addToScene(
-          initObject(
-            House(
-                collisionMessage: MapCollisionInteractWith.myrtilleHouse,
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: house.polygon),
-            house,
+        MapObject obj = initObject(
+          MapObject(
+            isHavaingCollisionShapePolygone: false,
           ),
+          house,
         );
+        MapObjectBody objBody = House(
+          mapObject: obj,
+          collisionMessage: MapCollisionInteractWith.myrtilleHouse,
+        );
+        game.addToScene(obj);
+        game.add(objBody);
+
         break;
       default:
     }
@@ -174,12 +193,15 @@ class GameSceneLoader {
         case TiledObjectName.brocoli:
           game.brocoli.position = Vector2(spawnPoint.x, spawnPoint.y);
           game.addToScene(game.brocoli);
-          game.bodyBrocoliSon = PersoBaseBodyBrocoliSon(player: game.brocoli);
-          game.add(game.bodyBrocoliSon);
+          game.bodyBrocoli = PersoBaseBodyBrocoli(player: game.brocoli);
+          game.add(game.bodyBrocoli);
           break;
         case TiledObjectName.brocoliSon:
           game.brocoliSon.position = Vector2(spawnPoint.x, spawnPoint.y);
           game.addToScene(game.brocoliSon);
+          game.bodyBrocoliSon =
+              PersoBaseBodyBrocoliSon(player: game.brocoliSon);
+          game.add(game.bodyBrocoliSon);
           break;
         default:
       }
@@ -196,46 +218,48 @@ class GameSceneLoader {
     for (var changeScene in changeScenesGroup.objects) {
       switch (changeScene.name) {
         case TiledObjectName.toVillage1:
-          game.addToScene(
-            initObject(
-              ChangeScenePoint(
-                toScene: GameScenes.villageCMS,
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: changeScene.polygon,
-                gameScenesController: game.gameScenesController,
-              ),
-              changeScene,
+          MapObject obj = initObject(
+            MapObject(
+              isHavaingCollisionShapePolygone: false,
             ),
+            changeScene,
           );
+          MapObjectBody objBody = ChangeScenePoint(
+            toScene: GameScenes.villageCMS,
+            mapObject: obj,
+          );
+          game.addToScene(obj);
+          game.add(objBody);
           break;
         case TiledObjectName.toVillage2:
           break;
         case TiledObjectName.toMoutardeHouse:
-          game.addToScene(
-            initObject(
-              ChangeScenePoint(
-                toScene: GameScenes.atMoutardeHome,
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: changeScene.polygon,
-                gameScenesController: game.gameScenesController,
-              ),
-              changeScene,
+          MapObject obj = initObject(
+            MapObject(
+              isHavaingCollisionShapePolygone: false,
             ),
+            changeScene,
           );
-
+          MapObjectBody objBody = ChangeScenePoint(
+            toScene: GameScenes.atMoutardeHome,
+            mapObject: obj,
+          );
+          game.addToScene(obj);
+          game.add(objBody);
           break;
         case TiledObjectName.toBrocoliHouse:
-          game.addToScene(
-            initObject(
-              ChangeScenePoint(
-                toScene: GameScenes.atBrocoliHome,
-                isHavaingCollisionShapePolygone: false,
-                polygonePoints: changeScene.polygon,
-                gameScenesController: game.gameScenesController,
-              ),
-              changeScene,
+          MapObject obj = initObject(
+            MapObject(
+              isHavaingCollisionShapePolygone: false,
             ),
+            changeScene,
           );
+          MapObjectBody objBody = ChangeScenePoint(
+            toScene: GameScenes.atBrocoliHome,
+            mapObject: obj,
+          );
+          game.addToScene(obj);
+          game.add(objBody);
           break;
 
         case TiledObjectName.toMyrtilleHouse:

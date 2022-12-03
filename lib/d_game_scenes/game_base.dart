@@ -48,7 +48,7 @@ abstract class DiabeteGameBase extends Forge2DGame with SingleGameInstance {
   // CMS Moutarde
   // CMS Myrtille
   //CMS Brocoli
-  //late final PersoBaseBodyBrocoli bodyPlayer;
+  late final PersoBaseBodyBrocoli bodyBrocoli;
   late final Brocoli brocoli;
   late final PersoBaseBodyBrocoliSon bodyBrocoliSon;
   late final BrocoliSon brocoliSon;
